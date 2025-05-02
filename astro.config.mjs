@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless'; // Vercel adapter'ını import et
+import vercel from '@astrojs/vercel'; // '/serverless' YOK!
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server', // Output modunu 'server' olarak ayarla
-  adapter: vercel({ // Vercel adapter'ını yapılandır
-    webAnalytics: { enabled: true }, // İsteğe bağlı: Vercel Analytics'i etkinleştir
-    // imageService: true // İsteğe bağlı: Astro Assets ile Vercel Image Optimization kullan
+  output: 'server', // veya 'hybrid'
+  adapter: vercel({ // Adapter çağrılıyor
+    webAnalytics: { enabled: true }, // isteğe bağlı
+    // imageService: true // isteğe bağlı
   }),
-  // Diğer Astro yapılandırmalarınız varsa burada kalabilir
 });
