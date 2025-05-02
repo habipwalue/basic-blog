@@ -1,18 +1,18 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const blockedIPs: string[] = [
-    '178.247.145.24', // !!! KENDİ IP LİSTENİZİ GİRİN !!!
-];
+const blockedIPs = ['178.247.145.24'];
 
 export const onRequest = defineMiddleware((context, next) => {
-    const ip = context.request.headers.get('x-nf-client-connection-ip');
-    console.log(`[Netlify] Gelen istek IP: ${ip}`);
+  // Vercel’in gerçek IP header’ları
+  const ip = context.request.headers.get('x-real-ip')
+          || context.request.headers.get('x-forwarded-for')?.split(',')[0]
+          || context.request.headers.get('x-vercel-forwarded-for')
+          || 'unknown';
 
-    if (ip && blockedIPs.includes(ip)) {
-        console.log(`[Netlify] Engellenen IP (${ip}) erişimi engellendi.`);
-        return new Response('Erişim Engellendi (Access Denied from Netlify)', {
-            status: 403
-        });
-    }
-    return next();
+  console.log(`Gelen IP: ${ip}`);
+
+  if (blockedIPs.includes(ip)) {
+    return new Response('Erişim Engellendi', { status: 403 });
+  }
+  return next();
 });

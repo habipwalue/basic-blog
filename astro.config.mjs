@@ -1,7 +1,10 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   output: 'server',
-  adapter: netlify(),
+  adapter: vercel({
+    edgeMiddleware: true,      // ← Edge Middleware’i aktif ediyor
+    skewProtection: false      // opsiyonel: Vercel Skew Koruması
+  }),
 });

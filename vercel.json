@@ -1,0 +1,6 @@
+{
+    "routes": [
+      { "src": "/(.*)", "middlewarePath": "middleware.ts" }
+    ]
+  }
+  
