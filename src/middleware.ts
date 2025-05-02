@@ -1,17 +1,18 @@
-// src/middleware.ts
-import type { MiddlewareHandler } from 'astro';
+import { defineMiddleware } from 'astro:middleware';
 
-export const onRequest: MiddlewareHandler = async ({ request }, next) => {
-  // Gerçek IP’yi X-Forwarded-For header’ından alıyoruz
-  const forwarded = request.headers.get('x-forwarded-for') || '';
-  const ip = forwarded.split(',')[0].trim();
+const blockedIPs: string[] = [
+    '178.247.145.24', // !!! KENDİ IP LİSTENİZİ GİRİN !!!
+];
 
-  // Engellemek istediğiniz IP’ler
-  const blocked = ['178.247.145.24'];
+export const onRequest = defineMiddleware((context, next) => {
+    const ip = context.request.headers.get('x-nf-client-connection-ip');
+    console.log(`[Netlify] Gelen istek IP: ${ip}`);
 
-  if (blocked.includes(ip)) {
-    return new Response('Erişim Engellendi', { status: 403 });
-  }
-
-  return next();
-};
+    if (ip && blockedIPs.includes(ip)) {
+        console.log(`[Netlify] Engellenen IP (${ip}) erişimi engellendi.`);
+        return new Response('Erişim Engellendi (Access Denied from Netlify)', {
+            status: 403
+        });
+    }
+    return next();
+});
