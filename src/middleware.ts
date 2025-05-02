@@ -6,7 +6,7 @@ export const onRequest: MiddlewareHandler = async ({ request }, next) => {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || '';
   
   // Engellenmek istenen IP listesi
-  const blocked = ['188.58.71.17'];
+  const blocked = ['178.247.145.24'];
   
   if (blocked.includes(ip)) {
     return new Response('Erişim Engellendi', { status: 403 });
