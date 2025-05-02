@@ -2,11 +2,11 @@
 import type { MiddlewareHandler } from 'astro';
 
 export const onRequest: MiddlewareHandler = async ({ request }, next) => {
-  // X-Forwarded-For başlığından IP adresini al
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : '';
+  // Gerçek IP’yi X-Forwarded-For header’ından alıyoruz
+  const forwarded = request.headers.get('x-forwarded-for') || '';
+  const ip = forwarded.split(',')[0].trim();
 
-  // Engellenmek istenen IP listesi
+  // Engellemek istediğiniz IP’ler
   const blocked = ['178.247.145.24'];
 
   if (blocked.includes(ip)) {
