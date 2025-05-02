@@ -1,0 +1,95 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/hakkinda/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa1/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa10/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa11/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa12/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa13/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa14/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa15/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa2/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa3/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa4/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa5/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa6/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa7/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa8/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfa9/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sayfaX/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		}
+	]
+}

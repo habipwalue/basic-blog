@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Sayfa 1";
+---
+<BaseLayout title={pageTitle}>
+  <h2>Sayfa 1 Başlığı</h2>
+  <p>Bu sayfa 1'in içeriğidir. Lorem ipsum dolor sit amet...</p>
+  <p>Diğer sayfalara linkler:</p>
+  <ul>
+    <li><a href="/sayfa2">Sayfa 2'ye git</a></li>
+    <li><a href="/sayfa5">Sayfa 5'e git</a></li>
+    <li><a href="/">Ana Sayfa'ya dön</a></li>
+  </ul>
+</BaseLayout>
