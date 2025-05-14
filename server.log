@@ -1,0 +1,5 @@
+
+> basic-blog@0.0.1 dev
+> astro dev --host --port 52076
+
+sh: 1: astro: not found
